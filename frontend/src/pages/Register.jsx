@@ -1,18 +1,11 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useState } from 'react'; 
+import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../api/axios';
 import toast from 'react-hot-toast';
 
 const soilTypes = ['Loamy', 'Sandy Loam', 'Clay', 'Alluvial', 'Black Cotton', 'Red Laterite'];
 const climates  = ['Tropical', 'Semi-Arid', 'Arid', 'Humid', 'Sub-Tropical'];
-
-// ✅ Moved OUTSIDE Register — fixes the focus loss bug
-const Row = ({ children }) => (
-  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '16px' }}>
-    {children}
-  </div>
-);
 
 const Field = ({ label, value, onChange, type = 'text', placeholder = '' }) => (
   <div>
@@ -29,8 +22,13 @@ const Field = ({ label, value, onChange, type = 'text', placeholder = '' }) => (
 );
 
 export default function Register() {
+  const [searchParams] = useSearchParams();
+  // Read the role from the URL, default to customer if someone just types /register
+  const initialRole = searchParams.get('role') === 'farmer' ? 'farmer' : 'customer';
+
   const [form, setForm] = useState({
-    name: '', email: '', password: '', role: 'customer',
+    name: '', email: '', password: '', 
+    role: initialRole, 
     farmName: '', location: '', soilType: '', climate: ''
   });
   const [loading, setLoading] = useState(false);
@@ -54,12 +52,12 @@ export default function Register() {
   return (
     <div style={{ background: 'var(--page)', minHeight: '100vh' }}>
       <nav className="topnav">
-        <div className="brand">🌿 Farm<span>App</span></div>
+        <div className="brand">🌿 Farm<span>ToHome</span></div>
       </nav>
 
       <div className="hero">
         <div style={{ color: '#fff', fontSize: '14px', opacity: 0.85 }}>
-          🌾 Join FarmApp — Register as a {form.role === 'farmer' ? 'farmer' : 'customer'}
+          🌾 Join FarmToHome — Register as a {form.role === 'farmer' ? 'Farmer' : 'Customer'}
         </div>
       </div>
 
@@ -75,21 +73,20 @@ export default function Register() {
         }}>
           <div style={{ marginBottom: '28px' }}>
             <div className="section-title" style={{ marginBottom: '4px' }}>Create an account</div>
-            <div style={{ fontSize: '12px', color: 'var(--br)' }}>Select your role and fill in your details to get started</div>
+            <div style={{ fontSize: '12px', color: 'var(--br)' }}>
+              Fill in your details to get started
+            </div>
           </div>
 
           <form onSubmit={handleSubmit}>
-            <div style={{ display: 'flex', gap: '16px', marginBottom: '24px' }}>
-              <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
-                <input type="radio" name="role" checked={form.role === 'customer'} onChange={() => set('role', 'customer')} />
-                Customer
-              </label>
-              <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
-                <input type="radio" name="role" checked={form.role === 'farmer'} onChange={() => set('role', 'farmer')} />
-                Farmer
-              </label>
-            </div>
-            <Row>
+            
+            {/* Dynamic Grid: 1 column for Customer, 2 columns for Farmer */}
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: form.role === 'farmer' ? '1fr 1fr' : '1fr', 
+              gap: '14px', 
+              marginBottom: '16px' 
+            }}>
               <Field
                 label="Full Name"
                 value={form.name}
@@ -104,7 +101,7 @@ export default function Register() {
                   placeholder="e.g. Ravi Farms"
                 />
               )}
-            </Row>
+            </div>
 
             <div style={{ marginBottom: '16px' }}>
               <Field
@@ -137,7 +134,7 @@ export default function Register() {
                   />
                 </div>
 
-                <Row>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '16px' }}>
                   <div>
                     <label className="form-label">Soil Type</label>
                     <select className="form-select" value={form.soilType}
@@ -154,7 +151,7 @@ export default function Register() {
                       {climates.map(c => <option key={c} value={c}>{c}</option>)}
                     </select>
                   </div>
-                </Row>
+                </div>
               </>
             )}
 
@@ -174,7 +171,7 @@ export default function Register() {
       </div>
 
       <div className="app-footer">
-        <div className="footer-text">🌿 FarmApp · Connecting farmers &amp; customers</div>
+        <div className="footer-text">🌿 FarmToHome · Connecting farmers &amp; customers</div>
       </div>
     </div>
   );

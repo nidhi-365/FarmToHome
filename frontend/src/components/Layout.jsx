@@ -25,7 +25,7 @@ export default function Layout() {
 
       {/* ── Top Nav ── */}
       <nav className="topnav">
-        <div className="brand">🌿 Farm<span>App</span></div>
+        <div className="brand">🌿 Farm<span>ToHome</span></div>
 
         {/* Category nav — farmer sections */}
         <div className="cat-nav" style={{ display: 'flex' }}>
@@ -111,7 +111,7 @@ export default function Layout() {
 
       {/* ── Footer ── */}
       <div className="app-footer">
-        <div className="footer-text">🌿 FarmApp · Connecting farmers &amp; customers</div>
+        <div className="footer-text">🌿 FarmToHome · Connecting farmers &amp; customers</div>
         <div style={{ display: 'flex', gap: '16px' }}>
           <span className="footer-link">About</span>
           <span className="footer-link">Help</span>

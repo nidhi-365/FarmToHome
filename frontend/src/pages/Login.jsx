@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../api/axios';
 import toast from 'react-hot-toast';
@@ -9,13 +9,14 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const roleHint = searchParams.get('role'); // 'customer' | 'farmer' | null
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       const { data } = await api.post('/auth/login', form);
-      console.log('Login response:', data); // ← check browser console for role
       login(data.user, data.token);
       toast.success('Welcome back!');
       navigate('/');
@@ -24,18 +25,30 @@ export default function Login() {
     } finally { setLoading(false); }
   };
 
+  const heroText = roleHint === 'farmer'
+    ? '🌾 Farmer\'s Portal — Sign in to manage your produce and listings'
+    : roleHint === 'customer'
+    ? '🛒 Customer Portal — Sign in to shop fresh farm produce'
+    : '🌿 Welcome back — Sign in to your FarmToHome account';
+
+  const subtitle = roleHint === 'farmer'
+    ? 'Access your farmer dashboard'
+    : roleHint === 'customer'
+    ? 'Browse and order fresh produce'
+    : 'Access your account';
+
   return (
     <div style={{ background: 'var(--page)', minHeight: '100vh' }}>
 
       {/* Top nav */}
       <nav className="topnav">
-        <div className="brand">🌿 Farm<span>App</span></div>
+        <div className="brand">🌿 Farm<span>ToHome</span></div>
       </nav>
 
       {/* Hero bar */}
       <div className="hero">
         <div style={{ color: '#fff', fontSize: '14px', opacity: 0.85 }}>
-          🌾 Farmer's Portal — Sign in to manage your produce and listings
+          {heroText}
         </div>
       </div>
 
@@ -52,7 +65,7 @@ export default function Login() {
         }}>
           <div style={{ marginBottom: '28px' }}>
             <div className="section-title" style={{ marginBottom: '4px' }}>Sign in</div>
-            <div style={{ fontSize: '12px', color: 'var(--br)' }}>Access your farmer dashboard</div>
+            <div style={{ fontSize: '12px', color: 'var(--br)' }}>{subtitle}</div>
           </div>
 
           <form onSubmit={handleSubmit}>
@@ -87,7 +100,7 @@ export default function Login() {
           </form>
 
           <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '12px', color: 'var(--br)' }}>
-            New farmer?{' '}
+            New here?{' '}
             <Link to="/register" style={{ color: 'var(--g500)', fontWeight: 500, textDecoration: 'none' }}>
               Create an account
             </Link>
@@ -96,7 +109,7 @@ export default function Login() {
       </div>
 
       <div className="app-footer">
-        <div className="footer-text">🌿 FarmApp · Connecting farmers &amp; customers</div>
+        <div className="footer-text">🌿 FarmToHome · Connecting farmers &amp; customers</div>
       </div>
     </div>
   );

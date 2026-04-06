@@ -33,7 +33,7 @@ export default function Navbar() {
   return (
     <nav className={styles.navbar}>
       <Link to="/" className={styles.brand}>
-        🌿 Farm<span>App</span>
+        🌿 Farm<span>ToHome</span>
       </Link>
 
       <div className={styles.catNav}>

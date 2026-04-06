@@ -4,6 +4,7 @@ import { useAuth } from './context/AuthContext';
 // Auth
 import Login from './pages/Login';
 import Register from './pages/Register';
+import LandingPage from './pages/LandingPage';
 
 // Farmer
 import Dashboard from './pages/Dashboard';
@@ -30,29 +31,42 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+        {/* Auth pages */}
+        <Route path="/login"    element={user ? <Navigate to="/" /> : <Login />} />
         <Route path="/register" element={user ? <Navigate to="/" /> : <Register />} />
 
-        {(!user || user.role === 'customer') && (
+        {/* Landing page — only for unauthenticated visitors */}
+        {!user && <Route path="/" element={<LandingPage />} />}
+
+        {/* Customer routes — logged-in customers */}
+        {user?.role === 'customer' && (
           <Route element={<CustomerLayout />}>
-            <Route path="/" element={<MarketplacePage />} />
+            <Route path="/"           element={<MarketplacePage />} />
             <Route path="/produce/:id" element={<ProductDetailPage />} />
-            <Route path="/cart" element={!user ? <Navigate to="/login" /> : <CartPage />} />
-            <Route path="/checkout" element={!user ? <Navigate to="/login" /> : <CheckoutPage />} />
-            <Route path="/orders" element={!user ? <Navigate to="/login" /> : <OrdersPage />} />
-            <Route path="/orders/:id" element={!user ? <Navigate to="/login" /> : <OrderDetailPage />} />
-            <Route path="/profile" element={!user ? <Navigate to="/login" /> : <ProfilePage />} />
+            <Route path="/cart"        element={<CartPage />} />
+            <Route path="/checkout"    element={<CheckoutPage />} />
+            <Route path="/orders"      element={<OrdersPage />} />
+            <Route path="/orders/:id"  element={<OrderDetailPage />} />
+            <Route path="/profile"     element={<ProfilePage />} />
           </Route>
         )}
 
+        {/* Allow unauthenticated browsing of individual product pages */}
+        {!user && (
+          <Route element={<CustomerLayout />}>
+            <Route path="/produce/:id" element={<ProductDetailPage />} />
+          </Route>
+        )}
+
+        {/* Farmer routes — logged-in farmers */}
         {user?.role === 'farmer' && (
           <Route element={<Layout />}>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/produce" element={<MyProduce />} />
-            <Route path="/produce/add" element={<AddProduce />} />
-            <Route path="/imperfect" element={<ImperfectMarket />} />
-            <Route path="/crops" element={<CropRecommendations />} />
-            <Route path="/my-orders" element={<FarmerOrdersPage />} />
+            <Route path="/"             element={<Dashboard />} />
+            <Route path="/produce"      element={<MyProduce />} />
+            <Route path="/produce/add"  element={<AddProduce />} />
+            <Route path="/imperfect"    element={<ImperfectMarket />} />
+            <Route path="/crops"        element={<CropRecommendations />} />
+            <Route path="/my-orders"    element={<FarmerOrdersPage />} />
           </Route>
         )}
 
