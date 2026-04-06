@@ -1,0 +1,102 @@
+.page { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+.loading { text-align: center; padding: 80px 0; color: var(--br); }
+.back { background: none; border: none; color: var(--g500); font-size: 14px; cursor: pointer; margin-bottom: 20px; padding: 0; }
+.back:hover { text-decoration: underline; }
+
+.header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; }
+.title { font-family: var(--ff-display); font-size: 24px; color: var(--g700); }
+.date { font-size: 13px; color: var(--br); margin-top: 4px; }
+
+.cancelBtn {
+  padding: 8px 18px;
+  border: 1.5px solid var(--error);
+  background: #fff;
+  color: var(--error);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.cancelBtn:hover:not(:disabled) { background: #fff0f0; }
+.cancelBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Status tracker */
+.tracker {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-bottom: 32px;
+  background: #fff;
+  border: 1px solid var(--g100);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  box-shadow: var(--shadow-card);
+}
+.trackStep { display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; }
+.trackDot {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--g100);
+  background: #fff;
+  margin-bottom: 8px;
+  transition: all 0.3s;
+  z-index: 1;
+}
+.trackDotActive { background: var(--g500); border-color: var(--g500); }
+.trackLabel { font-size: 11px; color: var(--br200); text-align: center; }
+.trackLabelActive { color: var(--g600); font-weight: 500; }
+.trackLine {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--g100);
+  z-index: 0;
+}
+.trackLineActive { background: var(--g400); }
+
+.cancelledBanner {
+  background: #fff0f0;
+  color: var(--error);
+  border: 1px solid #f5c1c1;
+  border-radius: var(--radius-md);
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 28px;
+}
+
+.layout { display: grid; grid-template-columns: 1fr 280px; gap: 20px; align-items: start; }
+
+.itemsCard, .infoCard {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--g100);
+  box-shadow: var(--shadow-card);
+  padding: 22px 24px;
+}
+.cardTitle { font-family: var(--ff-display); font-size: 16px; color: var(--g700); margin-bottom: 16px; }
+
+.item { display: flex; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--g50); }
+.item:last-of-type { border-bottom: none; }
+.imgWrap {
+  width: 52px; height: 52px;
+  border-radius: var(--radius-sm); overflow: hidden;
+  background: var(--g50);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.img { width: 100%; height: 100%; object-fit: cover; }
+.imgPlaceholder { font-size: 24px; }
+.itemBody { flex: 1; }
+.itemName { font-size: 14px; font-weight: 500; color: var(--soil); }
+.itemFarm { font-size: 11px; color: var(--br); margin-top: 2px; }
+.itemRight { text-align: right; }
+.itemQty { font-size: 12px; color: var(--br); }
+.itemPrice { font-size: 14px; font-weight: 600; color: var(--g600); }
+
+.hr { border: none; border-top: 1px solid var(--g100); margin: 12px 0; }
+.totalRow { display: flex; justify-content: space-between; font-size: 15px; font-weight: 600; color: var(--soil); }
+
+.infoLine { font-size: 14px; color: var(--soil); line-height: 1.7; }

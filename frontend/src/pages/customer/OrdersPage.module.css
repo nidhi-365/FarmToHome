@@ -1,0 +1,50 @@
+.page { max-width: 760px; margin: 0 auto; padding: 32px 24px; }
+.title { font-family: var(--ff-display); font-size: 26px; color: var(--g700); margin-bottom: 28px; }
+.loading { text-align: center; padding: 80px 0; color: var(--br); }
+.empty { text-align: center; padding: 60px 0; color: var(--br); }
+.empty p { font-size: 16px; margin-bottom: 16px; }
+.shopBtn {
+  display: inline-block; padding: 10px 24px;
+  background: var(--g500); color: #fff;
+  border-radius: var(--radius-md); text-decoration: none; font-size: 14px;
+}
+.list { display: flex; flex-direction: column; gap: 14px; }
+
+.orderCard {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--g100);
+  box-shadow: var(--shadow-card);
+  padding: 20px 24px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.orderCard:hover { border-color: var(--g300); box-shadow: var(--shadow-hover); }
+
+.orderTop { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+.orderId { font-size: 14px; font-weight: 600; color: var(--soil); margin-bottom: 2px; }
+.orderDate { font-size: 12px; color: var(--br); }
+
+.statusBadge {
+  font-size: 12px; font-weight: 600;
+  padding: 4px 12px; border-radius: 12px;
+}
+
+.orderItems { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.orderItem { display: flex; align-items: center; gap: 6px; }
+.itemImgWrap {
+  width: 32px; height: 32px;
+  border-radius: 6px; overflow: hidden;
+  background: var(--g50);
+  display: flex; align-items: center; justify-content: center;
+}
+.itemImg { width: 100%; height: 100%; object-fit: cover; }
+.itemPlaceholder { font-size: 16px; }
+.itemLabel { font-size: 12px; color: var(--soil); }
+.more { font-size: 12px; color: var(--br); align-self: center; }
+
+.orderFooter { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--g50); }
+.orderTotal { font-size: 16px; font-weight: 600; color: var(--g600); }
+.viewLink { font-size: 13px; color: var(--g400); }
