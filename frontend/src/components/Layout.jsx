@@ -89,17 +89,6 @@ export default function Layout() {
             </div>
           </div>
 
-          <div className="sidebar-section">
-            <div className="sidebar-heading">Account</div>
-            <div className="sidebar-link" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
-              <span style={{ fontWeight: 500, color: 'var(--soil)', fontSize: '13px' }}>{user?.name}</span>
-              <span style={{ fontSize: '11px', color: 'var(--br)' }}>{user?.email}</span>
-            </div>
-            <div className="sidebar-link" onClick={handleLogout} style={{ cursor: 'pointer' }}>
-              <span className="s-icon">🚪</span> Logout
-            </div>
-          </div>
-
         </aside>
 
         {/* ── Main content ── */}

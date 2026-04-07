@@ -101,7 +101,10 @@ export default function Login() {
 
           <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '12px', color: 'var(--br)' }}>
             New here?{' '}
-            <Link to="/register" style={{ color: 'var(--g500)', fontWeight: 500, textDecoration: 'none' }}>
+            <Link
+              to={roleHint ? `/register?role=${roleHint}` : '/register'}
+              style={{ color: 'var(--g500)', fontWeight: 500, textDecoration: 'none' }}
+            >
               Create an account
             </Link>
           </div>

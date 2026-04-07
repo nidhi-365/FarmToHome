@@ -88,7 +88,7 @@ export default function CropRecommendations() {
         marginBottom: '20px'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-          <span style={{ fontSize: '18px' }}>🤖</span>
+          <span style={{ fontSize: '18px' }}></span>
           <div className="sidebar-heading" style={{ fontSize: '13px' }}>AI Fertilizer Suggester</div>
         </div>
         <div style={{ fontSize: '11px', color: 'var(--br)', marginBottom: '14px' }}>
@@ -125,7 +125,7 @@ export default function CropRecommendations() {
           className="btn-primary"
           style={{ width: '100%', padding: '9px', fontSize: '13px' }}
         >
-          {fertLoading ? '🤖 Analysing soil...' : '🌱 Get Fertilizer Suggestion'}
+          {fertLoading ? 'Analysing soil...' : '🌱 Get Fertilizer Suggestion'}
         </button>
 
         {/* Result */}

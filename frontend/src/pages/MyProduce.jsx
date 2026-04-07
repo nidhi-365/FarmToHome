@@ -47,10 +47,6 @@ export default function MyProduce() {
     { key: 'all',        label: '🌿 All' },
     { key: 'imperfect',  label: '🍂 Imperfect' },
     { key: 'disaster',   label: '⚠️ Disaster' },
-    { key: 'Summer',     label: '☀️ Summer' },
-    { key: 'Winter',     label: '❄️ Winter' },
-    { key: 'Monsoon',    label: '🌧️ Monsoon' },
-    { key: 'All Season', label: '📅 All Season' },
   ];
 
   if (loading) return (

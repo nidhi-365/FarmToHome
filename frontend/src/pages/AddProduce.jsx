@@ -222,12 +222,12 @@ export default function AddProduce() {
                 Price (₹) *
                 {priceLoading && (
                   <span style={{ fontSize: '10px', color: 'var(--g500)', marginLeft: '6px', fontWeight: 400 }}>
-                    🤖 predicting...
+                    AI predicting...
                   </span>
                 )}
                 {suggestedPrice && !priceLoading && (
                   <span style={{ fontSize: '10px', color: 'var(--g500)', marginLeft: '6px', fontWeight: 400 }}>
-                    🤖 AI filled
+                  AI filled
                   </span>
                 )}
               </label>
@@ -258,7 +258,7 @@ export default function AddProduce() {
             }}>
               <div>
                 <div style={{ fontSize: '12px', color: 'var(--g700)', fontWeight: 600 }}>
-                  🤖 AI Price Suggestion: ₹{suggestedPrice}/kg
+                  AI Price Suggestion: ₹{suggestedPrice}/kg
                 </div>
                 <div style={{ fontSize: '11px', color: 'var(--g500)', marginTop: '2px' }}>
                   Based on season, market trends & produce condition
